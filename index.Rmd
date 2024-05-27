@@ -2,6 +2,12 @@
 title: "A3: Incarceration"
 output: html_document
 ---
+```{r}
+library(dplyr)
+library(tidyverse)
+library(ggplot2)
+library(lubridate)
+```
 
 ### Introduction
 
@@ -11,9 +17,11 @@ Though this analysis I will be examining the rate of incarcerations based on loc
 
 ### Summary Information
 
-The variables I collected give insight to the rates in which white people are arrested and put in jail compared to the rate Native Americans are arrested. For simplicity, as stated above, I am focusing on specifically Washington state. I used the total jail population per county and state for my analysis as it provides jail numbers rather than rates that were given in the Washington specific table. I created a new data fram containing only WA state data. I found the total Native American jail population over time (1963- present) to be 15551.37 and White jail population to be 222168.9. In order to gauge the percentage of Native Americans and White people incarcerated I then determined the total population of each group. According to the data, in Washington state there are 1,961,627 Native Americans with an incarceration rate of about %0.7927. A total population of 94,711,492 White people reside in Washington with an incarceration rate of about %0.2346. 
+The variables I collected give insight to the rates in which white people are arrested and put in jail compared to the rate Native Americans are arrested. For simplicity, as stated above, I am focusing on specifically Washington state. I used the total jail population per county and state for my analysis as it provides jail numbers rather than rates that were given in the Washington specific table. I created a new data frame containing only WA state data. I found the total Native American jail population over time (1963- present) to be 15551.37 and White jail population to be 222168.9. In order to gauge the percentage of Native Americans and White people incarcerated I then determined the total population of each group. According to the data, in Washington state there are 1,961,627 Native Americans with an incarceration rate of about %0.7927. A total population of 94,711,492 White people reside in Washington with an incarceration rate of about %0.2346. the rate of incarceration for Native Americans in the U.S. is significantly higher than that of white people. As discussed prior, I also want to examine the way urbanicity may play into the rate of incarceration of people and Native Americans in specific. Small/mid areas contain the most incarcerations at 153668.39, compared to urban areas at 98932.50. Native Americans make up %13.974 of small/mid area population, and white people make up %55.9 of small/mid area population. This information displays the disproportionate rate in which Native Americans are incarcerated (specifically jail population) compared to the rate in which white people are incarcerated.  
 
 ```{r}
+
+jail_pop_county_state <- read.csv("https://github.com/melaniewalsh/Neat-Datasets/blob/main/us-jail-pop.csv?raw=true")
 
 WA_JAIL_POP <- jail_pop_county_state %>% filter(state == "WA")
 
@@ -53,8 +61,6 @@ native_small_mid_percentage <- native_small_mid / total_small_mid
 
 white_small_mid_percentage <- white_small_mid / total_small_mid
 ```
-
-WA_JAIL_POP: the population of washington incarceration rather than the rate of incarceration
 
 ### The Dataset
 
