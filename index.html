@@ -353,26 +353,73 @@ display: none;
 </div>
 
 
+<pre class="r"><code>library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## ── Attaching core tidyverse packages ─────────────────── tidyverse 2.0.0.9000 ──
+## ✔ forcats   1.0.0     ✔ readr     2.1.5
+## ✔ ggplot2   3.5.1     ✔ stringr   1.5.1
+## ✔ lubridate 1.9.3     ✔ tibble    3.2.1
+## ✔ purrr     1.0.2     ✔ tidyr     1.3.1</code></pre>
+<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<pre class="r"><code>library(ggplot2)
+library(lubridate)</code></pre>
 <div id="introduction" class="section level3">
 <h3>Introduction</h3>
 <p>An introduction of the problem domain and a description of the
 variable(s) you are choosing to analyze (and why!)</p>
+<p>Though this analysis I will be examining the rate of incarcerations
+based on location (rural/urban) in the state of Washington.
+Additionally, I will examine how race impacts the rate of incarceration
+in Washington. By limiting the scope of analysis to a singular state,
+there is more specific insight available into how race can impact
+incarceration rates. Specifically, I will be examining the rate of
+Native American incarcerations against the rate of white incarcerations.
+Due to the relevance of this issue, as the Pacific Northwest and
+Washington as a whole is a place where many Native Americans reside, the
+comparison can shed light onto discriminatory behavior. To allow for a
+more focus scope, I will also only be focusing on the jail population
+rates. I will be doing this for two reasons: there is little to no
+information provided in the data frame about prison rates for Native
+Americans, and the jail rates can provide direct insight into the rate
+in which Native Americans are arrested.</p>
 </div>
 <div id="summary-information" class="section level3">
 <h3>Summary Information</h3>
-<p>Write a summary paragraph of findings that includes the 5 values
-calculated from your summary information R script</p>
-<p>These will likely be calculated using your DPLYR skills, answering
-questions such as: </p>
-<ul>
-<li>What is the average value of my variable across all the counties (in
-the current year)?</li>
-<li>Where is my variable the highest / lowest?</li>
-<li>How much has my variable change over the last N years?</li>
-</ul>
-<p>Feel free to calculate and report values that you find relevant.
-Again, remember that the purpose is to think about how these measure of
-incarceration vary by race.</p>
+<p>The variables I collected give insight to the rates in which white
+people are arrested and put in jail compared to the rate Native
+Americans are arrested. For simplicity, as stated above, I am focusing
+on specifically Washington state. I used the total jail population per
+county and state for my analysis as it provides jail numbers rather than
+rates that were given in the Washington specific table. I created a new
+data frame containing only WA state data. I found the total Native
+American jail population over time (1963- present) to be 15551.37 and
+White jail population to be 222168.9. In order to gauge the percentage
+of Native Americans and White people incarcerated I then determined the
+total population of each group. According to the data, in Washington
+state there are 1,961,627 Native Americans with an incarceration rate of
+about %0.7927. A total population of 94,711,492 White people reside in
+Washington with an incarceration rate of about %0.2346. the rate of
+incarceration for Native Americans in the U.S. is significantly higher
+than that of white people. As discussed prior, I also want to examine
+the way urbanicity may play into the rate of incarceration of people and
+Native Americans in specific. Small/mid areas contain the most
+incarcerations at 153668.39, compared to urban areas at 98932.50. Native
+Americans make up %13.974 of small/mid area population, and white people
+make up %55.9 of small/mid area population. This information displays
+the disproportionate rate in which Native Americans are incarcerated
+(specifically jail population) compared to the rate in which white
+people are incarcerated.</p>
 </div>
 <div id="the-dataset" class="section level3">
 <h3>The Dataset</h3>
@@ -385,6 +432,9 @@ What, if any, ethical questions or questions of power do you need to
 consider when working with this data?<br />
 What are possible limitations or problems with this data? (at least 200
 words)</p>
+<p>This data was collected by Vera in order to provide insight into the
+rates on incarceration as well as details into how different racial
+groups are disproportionately incarcerated. Through the sources</p>
 </div>
 <div id="trends-over-time-chart" class="section level3">
 <h3>Trends Over Time Chart</h3>
