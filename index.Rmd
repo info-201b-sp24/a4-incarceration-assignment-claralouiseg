@@ -7,19 +7,54 @@ output: html_document
 
 An introduction of the problem domain and a description of the variable(s) you are choosing to analyze (and why!)
 
-
+Though this analysis I will be examining the rate of incarcerations based on location (rural/urban) in the state of Washington. Additionally, I will examine how race impacts the rate of incarceration in Washington. By limiting the scope of analysis to a singular state, there is more specific insight available into how race can impact incarceration rates. Specifically, I will be examining the rate of Native American incarcerations against the rate of white incarcerations. Due to the relevance of this issue, as the Pacific Northwest and Washington as a whole is a place where many Native Americans reside, the comparison can shed light onto discriminatory behavior. To allow for a more focus scope, I will also only be focusing on the jail population rates. I will be doing this for two reasons: there is little to no information provided in the data frame about prison rates for Native Americans, and the jail rates can provide direct insight into the rate in which Native Americans are arrested. 
 
 ### Summary Information
 
-Write a summary paragraph of findings that includes the 5 values calculated from your summary information R script
+The variables I collected give insight to the rates in which white people are arrested and put in jail compared to the rate Native Americans are arrested. For simplicity, as stated above, I am focusing on specifically Washington state. I used the total jail population per county and state for my analysis as it provides jail numbers rather than rates that were given in the Washington specific table. I created a new data fram containing only WA state data. I found the total Native American jail population over time (1963- present) to be 15551.37 and White jail population to be 222168.9. In order to gauge the percentage of Native Americans and White people incarcerated I then determined the total population of each group. According to the data, in Washington state there are 1,961,627 Native Americans with an incarceration rate of about %0.7927. A total population of 94,711,492 White people reside in Washington with an incarceration rate of about %0.2346. 
 
-These will likely be calculated using your DPLYR skills, answering questions such as: 
+```{r}
 
-- What is the average value of my variable across all the counties (in the current year)?
-- Where is my variable the highest / lowest?
-- How much has my variable change over the last N years?
+WA_JAIL_POP <- jail_pop_county_state %>% filter(state == "WA")
 
-Feel free to calculate and report values that you find relevant. Again, remember that the purpose is to think about how these measure of incarceration vary by race.
+native_non_zero_sum <- WA_JAIL_POP %>% 
+filter(!is.na(native_jail_pop) & native_pop_15to64 != 0) %>% summarize(sum_native_jail_pop = sum(native_jail_pop))
+
+white_non_zero_sum <- WA_JAIL_POP %>% 
+filter(!is.na(white_jail_pop) & white_jail_pop != 0) %>% summarize(sum_white_jail_pop = sum(white_jail_pop))
+
+wa_white_pop <- WA_JAIL_POP %>% filter(!is.na(white_pop_15to64) & white_pop_15to64 != 0) %>% summarise(sum_white_pop = sum(white_pop_15to64))
+
+wa_native_pop <- WA_JAIL_POP %>% filter(!is.na(white_pop_15to64) & white_pop_15to64 != 0) %>% summarise(sum_white_pop = sum(white_pop_15to64))
+
+native_percentage <- native_non_zero_sum / wa_native_pop
+
+white_percentage <- white_non_zero_sum / wa_white_pop
+
+wa_urbanicity_summary <- WA_JAIL_POP %>%
+group_by(urbanicity) %>%
+summarise(total_jail_population = sum(total_jail_pop, na.rm = TRUE))
+
+incarceration_rate_small_mid <- max(wa_urbanicity_summary$total_jail_population) 
+
+incarceration_rate_urbanicity <- wa_urbanicity_summary %>%
+filter(total_jail_population == max(total_jail_population)) %>%
+pull(urbanicity)
+
+SMALL_MID_DATA <- WA_JAIL_POP %>% filter(urbanicity == "small/mid")
+
+native_small_mid <- SMALL_MID_DATA %>% filter(!is.na(native_pop_15to64) & native_pop_15to64 != 0) %>% summarise(native_pop_small_mid = sum(native_pop_15to64))
+
+white_small_mid <- SMALL_MID_DATA %>% filter(!is.na(white_pop_15to64) & white_pop_15to64 != 0) %>% summarise(white_pop_small_mid = sum(white_pop_15to64))
+
+total_small_mid <- SMALL_MID_DATA %>% filter(!is.na(total_pop_15to64) & total_pop_15to64 != 0) %>% summarise(total_pop_small_mid = sum(total_pop_15to64))
+
+native_small_mid_percentage <- native_small_mid / total_small_mid
+
+white_small_mid_percentage <- white_small_mid / total_small_mid
+```
+
+WA_JAIL_POP: the population of washington incarceration rather than the rate of incarceration
 
 ### The Dataset
 
@@ -31,6 +66,7 @@ How many features (columns) are in the data?
 What, if any, ethical questions or questions of power do you need to consider when working with this data?  
 What are possible limitations or problems with this data?   (at least 200 words)
 
+This data was collected by Vera in order to provide insight into the rates on incarceration as well as details into how different racial groups are disproportionately incarcerated. Through the sources 
 
 ### Trends Over Time Chart
 
