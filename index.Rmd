@@ -71,7 +71,7 @@ There are 153,811 rows and 28 columns in the data set about jail population by c
 
 The chart below depicts how incarceration rates have changed since 1990 for two races: white people and Native Americans. Both Washington state and National trends are depicted in the chart. This is valuable in visualizing the difference in incarceration rates for the two groups, and how the rates in Washington State differ from the United States as a whole.  
 
-```{r, echo = FALSE, code = readLines("Trends_Over_Time_Chart.R")}
+```{r, echo=FALSE, message=FALSE}
 source("./Trends_Over_Time_Chart.R")
 plot(Trends_Over_Time_Chart)
 ```
@@ -80,7 +80,7 @@ plot(Trends_Over_Time_Chart)
 
 Below is a chart containing the rate in which white and Native American people are incarcerated in each category of urbanicity. Additionally, the rate that Native American people is shown by the green bar lines. This is beneficial in understanding how environment can impact incarceration rates for minority groups such as Native Americans.
 
-```{r, echo = FALSE, code = readLines("Proportion_Race_Urbanicity.R")}
+```{r, echo=FALSE, message=FALSE}
 source("./Proportion_Race_Urbanicity.R")
 plot(Proportion_Race_Urbanicity)
 
@@ -91,7 +91,7 @@ plot(Proportion_Race_Urbanicity)
 
 The heat map below shows the rate of incarceration on the state level. The numbers are relatively evenly dispersed compared to the charts above which show Washington to have a high rate of Native American Incarceration.
 
-```{r, echo = FALSE, code = readLines("Heat_Map.R")}
+```{r, echo=FALSE, message=FALSE}
 source("./Heat_Map.R")
 plot(heat_map)
 ```
