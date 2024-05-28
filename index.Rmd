@@ -2,7 +2,7 @@
 title: "A3: Incarceration"
 output: html_document
 ---
-```{r}
+```{r message=FALSE, echo=FALSE, warning=FALSE}
 library(dplyr)
 library(tidyverse)
 library(ggplot2)
@@ -11,8 +11,6 @@ library(knitr)
 ```
 
 ### Introduction
-
-An introduction of the problem domain and a description of the variable(s) you are choosing to analyze (and why!)
 
 Though this analysis I will be examining the rate of incarcerations based on location (rural/urban) in the state of Washington. Additionally, I will examine how race impacts the rate of incarceration in Washington. By limiting the scope of analysis to a singular state, there is more specific insight available into how race can impact incarceration rates. Specifically, I will be examining the rate of Native American incarcerations against the rate of white incarcerations. Due to the relevance of this issue, as the Pacific Northwest and Washington as a whole is a place where many Native Americans reside, the comparison can shed light on discriminatory behavior within the U.S. law enforcement systems. To allow for a more focused scope, I will also only be examining on the jail population rates. I will be doing this for two reasons: there is little information provided in the data frame about prison rates for Native Americans, and the jail rates can provide direct insight into the rate in which Native Americans are arrested. 
 
@@ -81,7 +79,7 @@ plot(Trends_Over_Time_Chart)
 
 Below is a chart containing the rate in which white and Native American people are incarcerated in each category of urbanicity. Additionally, the rate that Native American people is shown by the green bar lines. This is beneficial in understanding how environment can impact incarceration rates for minority groups such as Native Americans.
 
-```{r, echo=FALSE, message=FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
 source("./Proportion_Race_Urbanicity.R")
 plot(Proportion_Race_Urbanicity)
 
