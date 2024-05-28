@@ -13,7 +13,7 @@ library(lubridate)
 
 An introduction of the problem domain and a description of the variable(s) you are choosing to analyze (and why!)
 
-Though this analysis I will be examining the rate of incarcerations based on location (rural/urban) in the state of Washington. Additionally, I will examine how race impacts the rate of incarceration in Washington. By limiting the scope of analysis to a singular state, there is more specific insight available into how race can impact incarceration rates. Specifically, I will be examining the rate of Native American incarcerations against the rate of white incarcerations. Due to the relevance of this issue, as the Pacific Northwest and Washington as a whole is a place where many Native Americans reside, the comparison can shed light onto discriminatory behavior. To allow for a more focus scope, I will also only be focusing on the jail population rates. I will be doing this for two reasons: there is little to no information provided in the data frame about prison rates for Native Americans, and the jail rates can provide direct insight into the rate in which Native Americans are arrested. 
+Though this analysis I will be examining the rate of incarcerations based on location (rural/urban) in the state of Washington. Additionally, I will examine how race impacts the rate of incarceration in Washington. By limiting the scope of analysis to a singular state, there is more specific insight available into how race can impact incarceration rates. Specifically, I will be examining the rate of Native American incarcerations against the rate of white incarcerations. Due to the relevance of this issue, as the Pacific Northwest and Washington as a whole is a place where many Native Americans reside, the comparison can shed light on discriminatory behavior within the U.S. law enforcement systems. To allow for a more focused scope, I will also only be examining on the jail population rates. I will be doing this for two reasons: there is little information provided in the data frame about prison rates for Native Americans, and the jail rates can provide direct insight into the rate in which Native Americans are arrested. 
 
 ### Summary Information
 
@@ -64,52 +64,35 @@ white_small_mid_percentage <- white_small_mid / total_small_mid
 
 ### The Dataset
 
-Who collected the data?  
-How was the data collected or generated?  
-Why was the data collected?  
-How many observations (rows) are in your data?  
-How many features (columns) are in the data?  
-What, if any, ethical questions or questions of power do you need to consider when working with this data?  
-What are possible limitations or problems with this data?   (at least 200 words)
-
-This data was collected by Vera in order to provide insight into the rates on incarceration as well as details into how different racial groups are disproportionately incarcerated. Through the sources 
+This data was collected by Vera in order to provide insight into the rates of incarceration by state and county, as well as details into how different racial groups are disproportionately incarcerated. Through data collections by the Bureau of Justice Statistics (BJS), Vera collected its data from the Census of Jails (COJ) and the Annual Survey of Jails (ASJ). Both data collections provide statistics about jail populations. There is a companion project which collects data containing prison populations from the National Corrections Reporting Program. Both these data sets are combined to show detailed incarceration statistics at the county level. The population estimates provided in the data set come from the Census Bureau and the Center for Disease Control Prevention, and the geographical data is derived from the U.S. Department of Agriculture. 
+There are 153,811 rows and 28 columns in the data set about jail population by county and state. The ethical problems that arise when examining this data is the diversity that goes beyond just race. The data set does not take into account economic and educational background, it only displays the incarceration by race. This could be misleading to someone looking only at the data and disregarding socioeconomic context. The data is also limited for the same reason. Additionally, the data is limited in the amount of information provided for each group. For example, many values are blank when looking at data about Native American incarceration. This may be due to the way it was collected: compiling data from different sources each of which collected data in different ways and during different time periods. 
 
 ### Trends Over Time Chart
 
-Include a chart. Make sure to describe why you included the chart, and what patterns emerged
+The chart below depicts how incarceration rates have changed since 1990 for two races: white people and Native Americans. Both Washington state and National trends are depicted in the chart. This is valuable in visualizing the difference in incarceration rates for the two groups, and how the rates in Washington State differ from the United States as a whole.  
 
-The first chart that you will create and include will show the trend over time of your variable/topic. Think carefully about what you want to communicate to your user (you may have to find relevant trends in the dataset first!). Here are some requirements to help guide your design:
-
-- Show more than one, but fewer than ~10 trends
-  - This may mean showing the same measure for different locations or different racial groups. Think carefully about a meaningful comparison of locations (e.g., the top 10 counties in a state, top 10 states, etc.)
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- You need a legend for your different line colors and a clear legend title
-
-When we say "clear" or "human readable" titles and labels, that means that you should not just display the variable name.
-
-Here's an example of how to run an R script inside an RMarkdown file:
-
-``````{r, echo = FALSE, code = readLines("chart1_example.R")}
+```{r, echo = FALSE, code = readLines("Trends_Over_Time_Chart.R")}
+source("./Trends_Over_Time_Chart.R")
+plot(Trends_Over_Time_Chart)
 ```
 
 ### Variable Comparison Chart
 
-Include a chart. Make sure to describe why you included the chart, and what patterns emerged
+Below is a chart containing the rate in which white and Native American people are incarcerated in each category of urbanicity. Additionally, the rate that Native American people is shown by the green bar lines. This is beneficial in understanding how environment can impact incarceration rates for minority groups such as Native Americans.
 
-The second chart that you will create and include will show how two different (continuous) variables are related to one another. Again, think carefully about what such a comparison means and what you want to communicate to your user (you may have to find relevant trends in the dataset first!). Here are some requirements to help guide your design:
+```{r, echo = FALSE, code = readLines("Proportion_Race_Urbanicity.R")}
+source("./Proportion_Race_Urbanicity.R")
+plot(Proportion_Race_Urbanicity)
 
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- If you choose to add a color encoding (not required), you need a legend for your different color and a clear legend title
+```
+
 
 ### Map
 
-Include a chart. Make sure to describe why you included the chart, and what patterns emerged
+The heat map below shows the rate of incarceration on the state level. The numbers are relatively evenly dispersed compared to the charts above which show Washington to have a high rate of Native American Incarceration.
 
-The last chart that you will create and include will show how a variable is distributed geographically. Again, think carefully about what such a comparison means and what you want to communicate to your user (you may have to find relevant trends in the dataset first!). Here are some requirements to help guide your design:
-
-- Your map needs a title
-- Your color scale needs a legend with a clear label
-- Use a map based coordinate system to set the aspect ratio of your map
+```{r, echo = FALSE, code = readLines("Heat_Map.R")}
+source("./Heat_Map.R")
+plot(heat_map)
+```
 
